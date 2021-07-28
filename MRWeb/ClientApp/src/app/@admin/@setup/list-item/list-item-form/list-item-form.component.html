@@ -1,0 +1,36 @@
+<div mat-dialog-title>
+  <span>{{ (action === 'Add' ? 'Add': 'Edit') | translate }}</span>
+  <mat-icon (click)="cancelClick()" matTooltip="{{ 'Close' | translate }}" class="closeFormId">close</mat-icon>
+</div>
+
+<div mat-dialog-content>
+  <form name="fmListItem" [formGroup]="fmListItem" class="formKeyId">
+    <fieldset>
+      <legend>{{ 'ListDet' | translate }}</legend>
+
+      <div class="d-flex">
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'ListItem' | translate }}" formControlName="ListItem" autocomplete="off"
+            enterKeyFocus>
+        </mat-form-field>
+
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'Description' | translate }}" formControlName="Description" autocomplete="off"
+            enterKeyFocus>
+        </mat-form-field>
+
+        <mat-form-field class="flex-1 m-lr-2">
+          <mat-select placeholder="{{ 'Category' | translate }}" formControlName="ListItemCategoryId" enterKeyFocus>
+            <mat-option *ngFor="let dt of categoryList;" [value]="dt.ListItemCategoryId">
+              {{ dt.Category | translate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button type="submit" (click)="submitForm()" color="primary">{{ 'Save' | translate }}</button>
+</mat-dialog-actions>

@@ -1,0 +1,52 @@
+<div class="content-detail">
+  <div class="detail-title">
+    <span>{{ 'AssignRole' | translate }}</span>
+    <mat-icon (click)="cancelClick()" matTooltip="{{ 'Close' | translate }}" class="closeFormId">close</mat-icon>
+  </div>
+
+  <div class="detail-header">
+    <div class="search-bar">
+      <mat-form-field class="table-search-form-field" appearance="fill"
+        matTooltip="{{ 'SearchMessageText' | translate }}">
+        <mat-label>{{ 'Search' | translate }}</mat-label>
+        <input #searchText matInput [autofocus]="true" (keyup.enter)="applyFilter($event)">
+        <mat-icon matTooltip="{{ 'Clear' | translate }}" (click)="clearSearch()" class="clear-search-icon" matSuffix>
+          close</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="flex-1 m-lr-2" appearance="fill">
+        <mat-label>{{ 'CurrentRole' | translate }}</mat-label>
+        <mat-select [(ngModel)]="parentData.CurrentRoleId" ngModelOptions="{standalone: true}" enterKeyFocus required>
+          <mat-option *ngFor="let dt of roleList;" [value]="dt.RoleId">
+            {{ dt.Role | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="flex-1 m-lr-2" appearance="fill"
+        matTooltip="{{(navigationList.length == 0 ? 'SelectRoleToLoadNavigation' : 'DefaultNavigation') | translate}}">
+        <mat-label>{{ 'DefaultNavigation' | translate }}</mat-label>
+        <mat-select [formControl]="defaultNavigation" ngModelOptions="{standalone: true}" enterKeyFocus required>
+          <mat-optgroup *ngFor="let ap of applicationList;" [label]="ap.Application | translate">
+            <mat-option *ngFor="let dt of getApplicationNavigation(ap.ApplicationId);" [value]="dt.NavigationId"
+              matTooltip="{{ dt.Application | translate }}">
+              {{ dt.Navigation | translate }}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="action-button-wap">
+      <button mat-fab class="action-button m-r-10" matTooltip="{{ 'Save' | translate }}" mat-raised-button
+        (click)="saveClick()" color="primary">
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <mat-grid [config]="gridConfig" (onPageChange)="onPageChange($event)" (onSortChange)="onSortChange($event)"
+    (onCheckBoxChange)="onCheckBoxChange($event)" (onCheckAll)="onCheckAll($event)">
+  </mat-grid>
+  <!-- Grid -->
+</div>

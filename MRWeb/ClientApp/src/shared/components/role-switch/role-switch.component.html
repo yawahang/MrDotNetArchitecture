@@ -1,0 +1,12 @@
+<div mat-dialog-title>
+  <span>{{ 'ClickToSwitchRole' | translate }}</span>
+  <mat-icon (click)="cancelClick()" matTooltip="{{ 'Close' | translate }}" class="closeFormId">close</mat-icon>
+</div>
+
+<mat-dialog-content>
+  <mat-radio-group [ngModel]="currentRoleId" class="role-radio-group" (change)="roleChange($event)">
+    <mat-radio-button *ngFor="let role of roleList" [value]="role.RoleId">
+      {{ role.Role | translate }}
+    </mat-radio-button>
+  </mat-radio-group>
+</mat-dialog-content>

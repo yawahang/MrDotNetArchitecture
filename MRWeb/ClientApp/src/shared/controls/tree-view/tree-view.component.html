@@ -1,0 +1,71 @@
+<div class="oh-action-wrapper">
+  <div class="tree-actions">
+
+    <div class="flex-1 m-r-8 action-node">
+      <mat-icon (click)="filterNode(expanded ? 'CollapseAll' : 'ExpandAll')"
+        matTooltip="{{ (expanded ? 'CollapseAll' : 'ExpandAll') | translate  }}">{{expanded ? 'expand_more' :
+        'chevron_right'}}</mat-icon>
+    </div>
+
+    <mat-form-field appearance="fill" class="flex-1 m-lr-2">
+      <mat-label>{{ 'Filter' | translate }}</mat-label>
+      <mat-select (selectionChange)="onFilterChange($event)" ngModelOptions="{standalone: true}" [(value)]="selected">
+        <mat-option *ngFor="let dt of actionsList;" [value]="dt">
+          {{ dt | translate }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="searchable" appearance="fill" class="flex-1 m-lr-2">
+      <mat-label>{{ 'Search' | translate }}</mat-label>
+      <input #searchInput matInput (input)="searchNode($event)" autocomplete="off" />
+      <mat-icon class="search-clear" *ngIf="searchText && searchText !== ''" matTooltip="{{ 'Clear'  | translate }}"
+        (click)="clearSearch()" matSuffix>
+        close</mat-icon>
+    </mat-form-field>
+  </div>
+</div>
+
+<div class="oh-tree-wrapper">
+
+  <ul *ngFor="let parent of rootNode; trackBy: trackIndex" class="oh-tree">
+    <li [ngClass]="(parent.Visible && parent.Searched) ? 'show-node' : 'hide-node'">
+
+      <mat-icon *ngIf="hasChild(parent)" [ngClass]="(parent.Visible && parent.Searched) ? 'show-node' : 'hide-node'"
+        (click)="openCloseNode(parent)">
+        {{ parent.Expanded ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+
+      <mat-checkbox [checked]="parent.Checked" [indeterminate]="parent.Indeterminate" [disabled]="parent.Disabled"
+        (change)="onCheckChange(parent)">
+        {{parent.Node}}
+      </mat-checkbox>
+
+      <ul *ngIf="hasChild(parent)" class="collapsible-node" [ngClass]="parent.Expanded ? 'show-node' : 'hide-node'">
+        <ng-container *ngTemplateOutlet="recursiveNode; context: { $implicit: parent }">
+        </ng-container>
+      </ul>
+    </li>
+  </ul>
+
+  <ng-template #recursiveNode let-parent>
+    <li *ngFor="let child of getNode(parent, 'childNode'); trackBy: trackIndex"
+      [ngClass]="(child.Visible && child.Searched) ? 'show-node ' : 'hide-node'">
+
+      <mat-icon *ngIf="this.hasChild(child)" [ngClass]="(child.Visible && child.Searched) ? 'show-node ' : 'hide-node'"
+        (click)="openCloseNode(child)">
+        {{child.Expanded ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+
+      <mat-checkbox [checked]="child.Checked" [indeterminate]="child.Indeterminate" [disabled]="child.Disabled"
+        (change)="onCheckChange(child)">
+        {{child.Node}}
+      </mat-checkbox>
+
+      <ul *ngIf="hasChild(parent)" class="collapsible-node" [ngClass]="child.Expanded ? 'show-node' : 'hide-node'">
+        <ng-container *ngTemplateOutlet="recursiveNode; context: { $implicit: child }">
+        </ng-container>
+      </ul>
+    </li>
+  </ng-template>
+</div>

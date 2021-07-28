@@ -1,0 +1,86 @@
+<div mat-dialog-title>
+  <span>{{ (action === 'Add' ? 'AddUser': 'EditUser') | translate }}</span>
+  <mat-icon (click)="cancelClick()" matTooltip="{{ 'Close' | translate }}" class="closeFormId">close</mat-icon>
+</div>
+
+<div mat-dialog-content>
+  <form name="fmUser" [formGroup]="fmUser" class="formKeyId">
+    <fieldset>
+      <legend>{{ 'UserDet' | translate }}</legend>
+
+      <div class="d-flex">
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'Username' | translate }}" formControlName="Username" autocomplete="off"
+            enterKeyFocus>
+        </mat-form-field>
+
+        <mat-form-field class="flex-1 m-lr-2">
+          <mat-select placeholder="{{ 'Status' | translate }}" formControlName="StatusListItemId" enterKeyFocus>
+            <mat-option *ngFor="let dt of statusList;" [value]="dt.ListItemId">
+              {{ dt.ListItem | translate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="d-flex">
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'FirstName' | translate }}" formControlName="FirstName" autocomplete="off"
+            enterKeyFocus>
+        </mat-form-field>
+
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'MiddleName' | translate }}" formControlName="MiddleName" autocomplete="off"
+            enterKeyFocus>
+        </mat-form-field>
+
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'LastName' | translate }}" formControlName="LastName" autocomplete="off"
+            enterKeyFocus>
+        </mat-form-field>
+      </div>
+
+      <div class="d-flex">
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'Company' | translate }}" formControlName="Company"
+            (keydown.enter)="companyTrigger.closePanel()" [matAutocomplete]="Company"
+            (keydown.control.space)="companySearch()" #companyTrigger="matAutocompleteTrigger" enterKeyFocus>
+          <mat-icon matTooltip="{{'Search' | translate}} ({{'Ctrl + Space'}})" (click)="companySearch()" class="m-8"
+            matSuffix>
+            search</mat-icon>
+          <mat-autocomplete #Company="matAutocomplete" (optionSelected)="companySelection($event)">
+            <mat-option *ngFor="let val of companyFilteredOptions | async" [value]="val.Company">
+              {{val.Company}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'Office' | translate }}" formControlName="Office"
+            (keydown.enter)="officeTrigger.closePanel()" [matAutocomplete]="Office"
+            (keydown.control.space)="officeSearch()" #officeTrigger="matAutocompleteTrigger" enterKeyFocus>
+          <mat-icon matTooltip="{{'Search' | translate}} ({{'Ctrl + Space'}})" (click)="officeSearch()" class="m-8"
+            matSuffix>
+            search</mat-icon>
+          <mat-autocomplete #Office="matAutocomplete" (optionSelected)="officeSelection($event)">
+            <mat-option *ngFor="let val of officeFilteredOptions | async" [value]="val.Office">
+              {{val.Office}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field class="flex-1 m-lr-2">
+          <mat-select placeholder="{{ 'Culture' | translate }}" formControlName="CultureId" enterKeyFocus>
+            <mat-option *ngFor="let dt of cultureList;" [value]="dt.CultureId">
+              {{ dt.Culture | translate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button type="submit" (click)="submitForm()" color="primary">{{ 'Save' | translate }}</button>
+</mat-dialog-actions>

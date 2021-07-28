@@ -1,0 +1,61 @@
+@mixin site-core-cmp($theme) {
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  /*
+================================
+            Core
+================================
+*/
+  html {
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 11pt !important;
+    font-family: system-ui, sans-serif, Roboto, "Helvetica Neue" !important;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  *:focus {
+    outline: none !important;
+  }
+  *:active {
+    outline: none !important;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+  }
+  ::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+    background-color: #f5f5f5;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #a09898;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+  }
+  ::-webkit-scrollbar-thumb:window-inactive {
+    background: #a09898;
+  }
+
+  .scroller {
+    overflow-y: scroll;
+    scrollbar-color: #0A4C95 #C2D2E4;
+  }
+}

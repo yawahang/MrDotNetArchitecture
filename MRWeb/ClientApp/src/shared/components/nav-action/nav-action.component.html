@@ -1,0 +1,11 @@
+<div *ngIf="navigationAction.length > 0" class="action-button-wap">
+  <button mat-raised-button mat-fab *ngFor="let nav of navigationAction"
+    class="action-button m-r-10 {{nav.Class}} {{isFloating ? 'floating-nav-action': ''}}"
+    matTooltip="{{ nav.NavigationAction | translate }}" (click)="navActionClick(nav)" color="{{nav.Color}}">
+    <mat-icon>{{nav.Icon}}</mat-icon>
+  </button>
+</div>
+
+<div *ngIf="navigationAction.length == 0 && !loading" class="action-button-wap">
+  {{'NoNavigationActionAccess' | translate}}
+</div>

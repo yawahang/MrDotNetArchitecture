@@ -1,0 +1,194 @@
+@mixin site-theme-cmp($theme) {
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  /*
+    ================================
+                Site Theme
+    ================================
+*/
+  .app {
+    margin: 0;
+    padding: 0;
+  }
+  .mat-button-wrapper {
+    padding: 8px 0 !important;
+  }
+  .k-grid-toolbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+  .content-wrapper {
+    height: 100% !important;
+    width: 100% !important;
+    background-color: #e7e7e7;
+  }
+  .mat-dialog-content {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .lang-change-icon {
+    width: 15px !important;
+    height: 15px !important;
+  }
+  // Main content
+  .site-content {
+    .site-content-header {
+      padding-right: 8px;
+      display: flex;
+
+      .search-bar {
+        margin-left: 22px;
+        align-self: center;
+
+        .table-search-form-field {
+          height: 52px;
+          font-size: 14px !important;
+        }
+      }
+      .content-summary-bar {
+        flex: 1;
+        margin: 1px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-x: scroll;
+
+        .summary-item {
+          height: 52px;
+          font-size: 14px !important;
+        }
+      }
+      .action-button-wap {
+        flex: 1;
+        margin: 1px !important;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        .action-button {
+          margin: 8px 5px 15px 5px !important;
+          width: 40px !important;
+          height: 40px !important;
+        }
+      }
+    }
+  }
+  // Form Content
+  .form-content-wrapper {
+    .form-grid-wraper {
+      padding: 0 !important;
+      margin: 8px;
+      flex: 1;
+
+      .table-container {
+        height: calc(100vh - 25.938rem);
+        overflow-y: scroll !important;
+      }
+    }
+  }
+  .form-input-number {
+    text-align: right !important;
+  }
+  .form-input-money {
+    text-align: right !important;
+  }
+  // Detail content
+  .mat-dialog-container {
+    padding: 10px !important;
+  }
+  .mat-bottom-sheet-container {
+    padding: 10px !important;
+    overflow: hidden !important;
+  }
+  .content-detail {
+    .detail-title {
+      margin: 0 0 20px;
+      display: flex;
+      font-size: large !important;
+      margin-bottom: 12px !important;
+      padding-bottom: 5px !important;
+      border-bottom: 1px solid #adadad !important;
+      font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+      letter-spacing: normal;
+
+      span {
+        flex: 1;
+      }
+      mat-icon:hover {
+        color: #fff;
+        background: #f33232;
+        border-radius: 50%;
+      }
+    }
+    .detail-header {
+      display: flex;
+      background: #f6f2f2;
+
+      .search-bar {
+        margin-left: 22px;
+        align-self: center;
+
+        .table-search-form-field {
+          height: 52px;
+          font-size: 14px !important;
+        }
+      }
+
+      .action-button-wap {
+        flex: 1;
+        margin: 1px !important;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        .action-button {
+          margin: 8px 5px 15px 5px !important;
+          width: 45px !important;
+          height: 45px !important;
+        }
+      }
+    }
+  }
+
+  .table-search-form-field-small {
+    font-size: 12px !important;
+    width: 14vw !important;
+  }
+  fieldset {
+    border: solid 1px #ddc9c9;
+    padding: 10px;
+    margin: 2px;
+  }
+  legend {
+    font-size: small;
+    padding: 5px;
+    font-weight: 500;
+  }
+  mat-icon,
+  a {
+    cursor: pointer;
+  }
+  .clear-search-icon {
+    font-size: medium !important;
+    color: red;
+  }
+  .search-icon {
+    cursor: default !important;
+  }
+  .grid-row-data-templates {
+    display: flex;
+    vertical-align: middle;
+    justify-content: start;
+  }
+  .template-columns-item {
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: 4px;
+  }
+  .block-ui-wrapper {
+    background: #000000 !important;
+    opacity: 0.4 !important;
+  }
+}

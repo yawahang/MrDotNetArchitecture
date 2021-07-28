@@ -1,0 +1,179 @@
+@mixin toolbar-cmp($theme) {
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  mat-toolbar {
+    display: flex;
+    background: mat-color($primary, default-contrast);
+    margin-bottom: 7px;
+    .menu-icon {
+      padding-right: 1rem;
+      cursor: pointer;
+    }
+
+    .internal-nav-item-wrap {
+      margin-left: 18px;
+      border-bottom: none !important;
+      max-width: calc(100vw - 640px) !important;
+
+      .internal-nav-item {
+        color: mat-color($foreground);
+        border: #fcffff;
+        border-style: ridge;
+        border-width: revert;
+        border-block-color: revert;
+        border-left: none;
+        border-top: none;
+        border-bottom: none;
+        &.mat-tab-label-active {
+          color: mat-color($foreground);
+          border: #fcffff;
+          border-style: ridge;
+          border-width: revert;
+          border-block-color: revert;
+          border-left: none;
+          border-top: none;
+          border-bottom: none;
+          border-right: none;
+          background: mat-color($primary, 50);
+          color: #141465;
+        }
+        &:hover {
+          text-decoration: none !important;
+          color: mat-color($primary);
+        }
+      }
+      .mat-ink-bar {
+        height: 3px !important;
+      }
+    }
+
+    .no-internal-nav-access {
+      margin-left: 18px;
+      font-size: medium;
+    }
+
+    .toolbar-action-wrap {
+      margin-left: 10px;
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      flex-direction: row;
+
+      .notification-icon {
+        margin-left: 10px;
+        display: flex;
+        flex: 0 1 !important;
+        justify-content: flex-end;
+        .app-btn-wrap {
+          width: 2.4rem;
+          height: 2.4rem;
+          display: flex;
+          justify-content: center;
+          border: #fff;
+          background: rgb(14, 173, 14);
+          color: #fff;
+          mat-icon {
+            flex: 1;
+            align-self: center;
+            text-align: center;
+
+            &:hover {
+              color: rgb(91, 250, 91);
+            }
+          }
+        }
+      }
+
+      .fullscreen-icon {
+        margin-left: 10px;
+        display: flex;
+        flex: 0 1 !important;
+        justify-content: flex-end;
+        .app-btn-wrap {
+          width: 2.4rem;
+          height: 2.4rem;
+          display: flex;
+          justify-content: center;
+          border: #fff;
+          background: orange;
+          color: #fff;
+          mat-icon {
+            flex: 1;
+            align-self: center;
+            text-align: center;
+
+            &:hover {
+              color: rgb(250, 225, 179);
+            }
+          }
+        }
+      }
+
+      .application-icon {
+        margin-left: 10px;
+        display: flex;
+        flex: 0 1;
+        justify-content: flex-end;
+        .app-btn-wrap {
+          width: 2.4rem;
+          height: 2.4rem;
+          display: flex;
+          justify-content: center;
+          border: #fff;
+          background: blue;
+          color: #fff;
+          mat-icon {
+            flex: 1;
+            align-self: center;
+            text-align: center;
+
+            &:hover {
+              color: #76aef7;
+            }
+          }
+        }
+      }
+
+      .logout-icon {
+        margin-left: 10px;
+        display: flex;
+        flex: 0 1;
+        justify-content: flex-end;
+        .app-btn-wrap {
+          width: 2.4rem;
+          height: 2.4rem;
+          display: flex;
+          justify-content: center;
+          border: #fff;
+          background: red;
+          color: #fff;
+          mat-icon {
+            flex: 1;
+            align-self: center;
+            text-align: center;
+
+            &:hover {
+              color: #ff9898;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .application-active {
+    background: linear-gradient(to right, #5a558a, #8b87b3) !important;
+    color: #fff !important;
+    mat-icon {
+      color: #fff !important;
+    }
+  }
+
+  .logout-dialog-wrapper {
+    width: 20vw !important;
+    min-height: 16vh !important;
+  }
+}

@@ -1,0 +1,195 @@
+<div class="content-detail">
+  <div class="detail-title">
+    <span>{{ 'CategoryList' | translate }}</span>
+    <mat-icon (click)="cancelClick()" matTooltip="{{ 'Close' | translate }}" class="closeFormId">close</mat-icon>
+  </div>
+
+  <div class="detail-header">
+    <div class="search-bar">
+      <mat-form-field class="table-search-form-field" appearance="fill"
+        matTooltip="{{ 'SearchMessageText' | translate }}">
+        <mat-label>{{ 'Search' | translate }}</mat-label>
+        <input #searchText matInput (keyup.enter)="applyFilter($event)">
+        <mat-icon matTooltip="{{ 'Clear' | translate }}" (click)="clearSearch()" class="clear-search-icon" matSuffix>
+          close</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="action-button-wap">
+      <button *ngIf="navigationAction.includes('Add')" mat-fab class="action-button m-r-10 addFormId"
+        matTooltip="{{ 'Add' | translate }}" mat-raised-button (click)="addClick()" color="primary">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+      <button *ngIf="navigationAction.includes('Edit')" mat-fab class="action-button m-r-10 editFormId"
+        matTooltip="{{ 'Edit' | translate }}" mat-raised-button (click)="editClick()" color="basic">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="detail-grid-wraper mat-elevation-z8">
+    <div class="table-container">
+      <mat-progress-bar *ngIf="loading" mode="query"></mat-progress-bar>
+      <table mat-table [dataSource]="dataSource" class="table-element table-scroll" matSort
+        (matSortChange)="sortChange($event)">
+        <ng-container *ngFor="let column of gridColumns">
+
+          <!-- Action Column -->
+          <ng-container *ngIf="column.Type == 'Action'">
+            <ng-container *ngIf="column?.Sticky" matColumnDef="{{column.Name}}" sticky>
+              <th matTooltip="{{ 'Action' | translate }}" mat-header-cell *matHeaderCellDef
+                class="Header-Type-{{column.Type}}">
+                <mat-icon>toc</mat-icon>
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-icon class="grid-row-action-icon" [matMenuTriggerFor]="actionMenu"
+                  matTooltip="{{ 'ClickToViewActions' | translate }}" matSuffix>
+                  arrow_right
+                </mat-icon>
+                <mat-menu #actionMenu="matMenu">
+                  <ng-container *ngFor="let action of (column?.Data || [])">
+                    <button *ngIf="navigationAction.includes(action?.Name)" class="grid-row-action-btn"
+                      (click)="rowActionClick(action?.Name, element)" mat-menu-item>
+                      <mat-icon>{{action?.Icon}}</mat-icon>
+                      <span>{{ action?.Name | translate }}</span>
+                    </button>
+                  </ng-container>
+                </mat-menu>
+              </td>
+            </ng-container>
+          </ng-container>
+          <!-- Action Column -->
+
+          <ng-container *ngIf="column.Type != 'Action'">
+
+            <!-- Sticky Column -->
+            <ng-container *ngIf="column?.Sticky" matColumnDef="{{column.Name}}" sticky>
+              <ng-container *ngIf="isSortable">
+                <th mat-header-cell mwlResizable *matHeaderCellDef mat-sort-header class="Header-Type-{{column.Type}}">
+                  {{ column.Name | translate }}</th>
+              </ng-container>
+              <ng-container *ngIf="!isSortable">
+                <th mat-header-cell mwlResizable *matHeaderCellDef class="Header-Type-{{column.Type}}">{{ column.Name
+                  |
+                  translate }}</th>
+              </ng-container>
+              <ng-container [ngSwitch]="column.Type">
+                <ng-container *ngSwitchCase="'Date'">
+                  <td mat-cell *matCellDef="let element" class="Cell-Type-{{column.Type}}">
+                    {{ ((element || {})[column.Name] | date: (column.Format || gridColumnOption.Format[column.Type]))
+                    |
+                    translate
+                    }}
+                  </td>
+                </ng-container>
+                <ng-container *ngSwitchCase="'DateTime'">
+                  <td mat-cell *matCellDef="let element" class="Cell-Type-{{column.Type}}">
+                    {{ ((element || {})[column.Name] | date: (column.Format || gridColumnOption.Format[column.Type]))
+                    |
+                    translate }}
+                  </td>
+                </ng-container>
+                <ng-container *ngSwitchCase="'Number'">
+                  <td mat-cell *matCellDef="let element" class="Cell-Type-{{column.Type}}">
+                    {{ ((element || {})[column.Name] | number: (column.Format ||
+                    gridColumnOption.Format[column.Type]))
+                    |
+                    translate }}
+                  </td>
+                </ng-container>
+                <ng-container *ngSwitchCase="'Money'">
+                  <td mat-cell *matCellDef="let element" class="Cell-Type-{{column.Type}}">
+                    <span class="cell-prefix" *ngIf="column.Prefix !=''">{{ column.Prefix | translate }}</span>
+                    {{ ((element || {})[column.Name] | number: (column.Format ||
+                    gridColumnOption.Format[column.Type]))
+                    |
+                    translate }}
+                  </td>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  <td mat-cell *matCellDef="let element" class="Cell-Type-{{column.Type}}">
+                    <span class="cell-prefix" *ngIf="column.Prefix !=''">{{ (column.Prefix ||
+                      gridColumnOption.Prefix[column.Type]) | translate }}</span>
+                    {{ (element || {})[column.Name] | translate }}
+                    <span class="cell-suffix" *ngIf="column.Suffix !=''">{{ (column.Suffix ||
+                      gridColumnOption.Suffix[column.Type]) | translate }}</span>
+                  </td>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+            <!-- Sticky Column -->
+
+            <!-- Normal Column -->
+            <ng-container *ngIf="!column?.Sticky" matColumnDef="{{ column.Name }}">
+              <ng-container *ngIf="isSortable">
+                <th mat-header-cell mwlResizable *matHeaderCellDef mat-sort-header class="Header-Type-{{column.Type}}">
+                  {{ column.Name | translate }}</th>
+              </ng-container>
+              <ng-container *ngIf="!isSortable">
+                <th mat-header-cell mwlResizable *matHeaderCellDef class="Header-Type-{{column.Type}}">{{ column.Name
+                  |
+                  translate }}</th>
+              </ng-container>
+              <ng-container [ngSwitch]="column.Type">
+                <ng-container *ngSwitchCase="'Date'">
+                  <td mat-cell *matCellDef="let element" class="Cell-Type-{{column.Type}}">
+                    {{ ((element || {})[column.Name] | date: (column.Format || gridColumnOption.Format['Date'])) |
+                    translate
+                    }}
+                  </td>
+                </ng-container>
+                <ng-container *ngSwitchCase="'DateTime'">
+                  <td mat-cell *matCellDef="let element" class="Cell-Type-{{column.Type}}">
+                    {{ ((element || {})[column.Name] | date: (column.Format || gridColumnOption.Format[column.Type]))
+                    |
+                    translate }}
+                  </td>
+                </ng-container>
+                <ng-container *ngSwitchCase="'Number'">
+                  <td mat-cell *matCellDef="let element" class="Cell-Type-{{column.Type}}">
+                    {{ ((element || {})[column.Name] | number: (column.Format || gridColumnOption.Format['Number'])) |
+                    translate }}
+                  </td>
+                </ng-container>
+                <ng-container *ngSwitchCase="'Money'">
+                  <td mat-cell *matCellDef="let element" class="Cell-Type-{{column.Type}}">
+                    <span class="cell-prefix" *ngIf="column.Prefix !=''">
+                      {{ (column.Prefix || gridColumnOption.Prefix[column.Type]) | translate }}
+                    </span>
+                    {{ ((element || {})[column.Name] | number: (column.Format ||
+                    gridColumnOption.Format[column.Type]))
+                    |
+                    translate }}
+                  </td>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                  <td mat-cell *matCellDef="let element" class="Cell-Type-{{column.Type}}">
+                    <span class="cell-prefix" *ngIf="column.Prefix !=''">{{ (column.Prefix ||
+                      gridColumnOption.Prefix[column.Type]) | translate }}</span>
+                    {{ (element || {})[column.Name] | translate }}
+                    <span class="cell-suffix" *ngIf="column.Suffix !=''">{{ (column.Suffix ||
+                      gridColumnOption.Suffix[column.Type]) | translate }}</span>
+                  </td>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+            <!-- Normal Column -->
+
+          </ng-container>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row matRipple class="element-row" *matRowDef="let row; columns: displayedColumns;"
+          (click)="rowClick(row)" (dblclick)="rowDblClick(row)" tabindex="0" (keydown.enter)="rowDblClick(row)"
+          matRowSelection matTooltip="{{'DoubleClickForAddEditCategory' | translate}}"
+          [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}"
+          (mouseover)="row.hovered = true; selection = selection;" (mouseout)="row.hovered = false"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell grid-no-record">{{ noRecordMessage | translate }}</td>
+        </tr>
+      </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="pageSizeOptions" (page)="pageChange($event)" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

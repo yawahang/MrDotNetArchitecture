@@ -1,0 +1,152 @@
+/*
+================================
+    Custom Utility Class
+================================
+*/
+.overflow-y {
+  overflow-y: scroll;
+}
+
+// Gradient | Background | Color
+.gradient-green-linear {
+  background-image: linear-gradient(to right, #3ec173, #addec8) !important;
+}
+.gradient-orange-linear {
+  background-image: linear-gradient(to right, #e69633, #e6c7a0) !important;
+}
+.gradient-red-linear {
+  background-image: linear-gradient(to right, #e64433, #e6938a) !important;
+}
+.gradient-blue-linear {
+  background-image: linear-gradient(to right, #148cc5, #97c9e1) !important;
+}
+.color-white {
+  color: #fff !important;
+}
+.color-red {
+  color: #e64433 !important;
+}
+.color-green {
+  color: green !important;
+}
+.box-shadow {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+}
+// Gradient | Background | Color
+
+// Flex
+.d-flex {
+  display: flex !important;
+}
+.justify-center {
+  justify-content: center !important;
+}
+.flex-1 {
+  flex: 1 !important;
+}
+.flex-dir-col {
+  flex-direction: column !important;
+}
+.flex-dir-row {
+  flex-direction: row !important;
+}
+// Flex
+
+// Margins
+.m-4 {
+  margin: 4px !important;
+}
+.m-6 {
+  margin: 6px !important;
+}
+.m-8 {
+  margin: 8px !important;
+}
+.m-l-26 {
+  padding-right: 26px;
+}
+.m-l-40 {
+  margin-left: 40%;
+}
+.m-lr-2 {
+  margin: 0px 2px;
+}
+.m-r-10 {
+  margin-right: 10px !important;
+}
+.m-rl-8 {
+  margin: 0px 8px !important;
+}
+.m-r-8 {
+  margin-right: 8px !important;
+}
+.m-r-4 {
+  margin-right: 4px !important;
+}
+.m-l-8 {
+  margin-right: 8px !important;
+}
+.m-14 {
+  margin: 14px !important;
+}
+.m-l-14 {
+  margin-left: 14px !important;
+}
+// Margins
+.input-prefix {
+  font-weight: 500;
+  margin-right: 5px;
+}
+.input-suffix {
+  font-weight: 500;
+  margin-left: 5px;
+}
+.float-right {
+  text-align: right !important;
+}
+.float-left {
+  text-align: left !important;
+}
+.txt-end {
+  text-align: end !important;
+}
+.txt-start {
+  text-align: start !important;
+}
+.txt-center {
+  text-align: center !important;
+}
+// Bg Color
+.bg-blue {
+  background-color: blue !important;
+  color: #fff !important;
+}
+.bg-green {
+  background-color: green !important;
+  color: #fff !important;
+}
+.bg-green-1 {
+  background-color: rgb(13, 155, 13) !important;
+  color: #fff !important;
+}
+.bg-orange {
+  background-color: orange !important;
+  color: #fff !important;
+}
+.bg-white {
+  background-color: #fff !important;
+  color: black !important;
+}
+.bg-red {
+  background-color: red !important;
+  color: #fff !important;
+}
+.bg-red-1 {
+  background-color: rgb(160, 5, 5) !important;
+  color: #fff !important;
+}
+
+// Font
+.font-size-3rem {
+  font-size: 3rem !important;
+}

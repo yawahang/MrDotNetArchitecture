@@ -1,0 +1,38 @@
+<div mat-dialog-title>
+  <span>{{ 'DataAccess' | translate}} </span>
+  <mat-icon (click)="cancelClick()" matTooltip="{{ 'Close' | translate}}" class="closeFormId">close</mat-icon>
+</div>
+
+<div mat-dialog-content>
+  <div class="d-flex flex-dir-col m-lr-2">
+    <div class="flex-1">
+      <form name="fmDataAccess" [formGroup]="fmDataAccess" class="formKeyId">
+        <div class="d-flex">
+          <mat-form-field class="flex-1 m-lr-2" matTooltip="{{ 'DefaultOffice' | translate }}" appearance="fill">
+            <mat-label>{{ 'DefaultOffice' | translate }}</mat-label>
+            <input matInput formControlName="DefaultOffice" (keydown.enter)="officeTrigger.closePanel()"
+              [matAutocomplete]="DefaultOffice" (keydown.control.space)="officeSearch()"
+              #officeTrigger="matAutocompleteTrigger" enterKeyFocus>
+            <mat-icon matTooltip="{{'Search' | translate}} ({{'Ctrl + Space'}})" (click)="officeSearch()" class="m-8"
+              matSuffix>
+              search</mat-icon>
+            <mat-autocomplete #DefaultOffice="matAutocomplete" (optionSelected)="officeSelection($event)">
+              <mat-option *ngFor="let val of officeFilteredOptions | async" [value]="val.Node">
+                {{val.Node}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </form>
+    </div>
+    <div class="flex-1">
+      <tree-view *ngIf="treeViewConfig.Data.length > 0" [config]="treeViewConfig"
+        (valueChange)="treeViewChange($event)">
+      </tree-view>
+    </div>
+  </div>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button (click)="saveDataAccess()" color="primary">{{ 'Save' | translate }}</button>
+</mat-dialog-actions>

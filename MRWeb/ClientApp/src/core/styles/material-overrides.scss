@@ -1,0 +1,125 @@
+@mixin material-overrides-cmp($theme) {
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  /*
+================================
+            SlideToggle
+================================
+*/
+  .mat-slide-toggle-bar {
+    height: 21px !important;
+    width: 36px !important;
+    border-radius: 2px !important;
+    .mat-slide-toggle-thumb-container {
+      top: 0px !important;
+      .mat-slide-toggle-thumb {
+        height: 21px !important;
+        border-radius: 2px !important;
+      }
+    }
+  }
+  .mat-slide-toggle.mat-primary.mat-checked {
+    .mat-slide-toggle-bar {
+      background-color: #c6d2d8 !important;
+    }
+    .mat-slide-toggle-thumb {
+      background-color: #016596 !important;
+    }
+  }
+  /*
+  ================================
+              Snackbar
+  ================================
+  */
+  .warning {
+    background-color: orange !important;
+    color: #fff !important;
+  }
+  .success {
+    background-color: green !important;
+    color: #fff !important;
+  }
+  .error {
+    background-color: red !important;
+    color: #fff !important;
+  }
+  .info {
+    background-color: rgb(68, 68, 211) !important;
+    color: #fff !important;
+  }
+  .mat-snack-bar-container {
+    margin-top: 18.1% !important;
+    margin-right: 13px !important;
+    border-radius: 0 !important;
+    min-height: 66px !important;
+    justify-content: center !important;
+    display: flex !important;
+    flex-direction: column;
+    .mat-button-wrapper {
+      color: #fff;
+    }
+  }
+  /*
+================================
+            Mat Card
+================================
+*/
+  .mat-card-header-text {
+    margin: 2px !important;
+  }
+  /*
+  ================================
+              Mat Dialog
+  ================================
+  */
+  div[mat-dialog-title],
+  .mat-dialog-title {
+    display: flex;
+    font-size: large !important;
+    margin-bottom: 12px !important;
+    padding-bottom: 5px !important;
+    border-bottom: 1px solid #adadad !important;
+
+    span {
+      flex: 1;
+    }
+    mat-icon:hover:not(.clear-form-icon) {
+      color: #fff;
+      background: #f33232;
+      border-radius: 50%;
+    }
+  }
+  /*
+  ================================
+             NGXDate style override
+  ================================
+  */
+  .mat-menu-panel {
+    max-width: 100% !important;
+
+    section {
+      width: 308px !important;
+    }
+  }
+  /*
+  ================================
+             MatSelect style override
+  ================================
+  */
+  .mat-optgroup-label {
+    font-weight: 800;
+    border-top: solid 1px #f3eaea;
+    border-bottom: solid 1px #f3eaea;
+  }
+  /*
+  ================================
+         MatTooltip style override
+  ================================
+  */
+  .multi-line-tooltip {
+    white-space: pre-line;
+  }
+}

@@ -1,0 +1,18 @@
+<div mat-dialog-title>
+  <span>{{ 'AssignNavigation' | translate}} </span>
+  <mat-icon (click)="cancelClick()" matTooltip="{{ 'Close' | translate}}" class="closeFormId">close</mat-icon>
+</div>
+
+<div mat-dialog-content>
+  <div class="d-flex flex-dir-col m-lr-2">
+    <div class="flex-1">
+      <tree-view *ngIf="treeViewConfig.Data.length > 0" [config]="treeViewConfig"
+        (valueChange)="treeViewChange($event)">
+      </tree-view>
+    </div>
+  </div>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button (click)="saveRoleNavigation()" color="primary">{{ 'Save' | translate }}</button>
+</mat-dialog-actions>

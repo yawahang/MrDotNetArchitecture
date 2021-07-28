@@ -1,0 +1,118 @@
+<div class="content-detail">
+  <div class="detail-title">
+    <span>{{ 'AssignNavigation' | translate }}</span>
+    <mat-icon (click)="cancelClick()" matTooltip="{{ 'Close' | translate }}" class="closeFormId">close</mat-icon>
+  </div>
+
+  <div class="detail-header">
+    <div class="search-bar">
+      <mat-form-field class="table-search-form-field" appearance="fill"
+        matTooltip="{{ 'SearchMessageText' | translate }}">
+        <mat-label>{{ 'Search' | translate }}</mat-label>
+        <input #searchText matInput (keyup.enter)="applyFilter($event)">
+        <mat-icon matTooltip="{{ 'Clear' | translate }}" (click)="clearSearch()" class="clear-search-icon" matSuffix>
+          close</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="action-button-wap">
+      <button mat-fab class="action-button m-r-10" matTooltip="{{ 'Save' | translate }}" mat-raised-button
+        (click)="saveClick()" color="primary">
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="detail-grid-wraper mat-elevation-z8">
+    <div class="table-container">
+      <mat-progress-bar *ngIf="loading"  mode="query"></mat-progress-bar>
+      <table mat-table [dataSource]="dataSource" class="table-element table-scroll role-navigation-grid" matSort
+        (matSortChange)="sortChange($event)">
+
+        <ng-container *ngFor="let column of gridColumns">
+          <!-- Normal Column -->
+          <ng-container matColumnDef="{{ column.Name }}">
+            <!-- Checkbox Column -->
+            <ng-container *ngIf="column?.Type == 'CheckBox'">
+              <th mat-header-cell mwlResizable *matHeaderCellDef class="Header-Type-{{column.Type}}">
+                <mat-checkbox (change)="$event ? selectAll() : null" [checked]="selection.hasValue() && isAllSelected()"
+                  [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+                {{ column.Name | translate }}
+              </th>
+            </ng-container>
+            <!-- Checkbox Column -->
+            <ng-container *ngIf="column?.Type != 'CheckBox'">
+              <ng-container *ngIf="isSortable">
+                <th mat-header-cell mwlResizable *matHeaderCellDef mat-sort-header class="Header-Type-{{column.Type}}">
+                  {{ column.Name | translate }}</th>
+              </ng-container>
+              <ng-container *ngIf="!isSortable">
+                <th mat-header-cell mwlResizable *matHeaderCellDef class="Header-Type-{{column.Type}}">{{ column.Name |
+                  translate }}</th>
+              </ng-container>
+            </ng-container>
+
+            <ng-container [ngSwitch]="column.Type">
+              <!-- Checkbox Row -->
+              <ng-container *ngSwitchCase="'CheckBox'">
+                <td mat-cell *matCellDef="let element">
+                  <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(element) : null"
+                    [checked]="selection.isSelected(element)">
+                  </mat-checkbox>
+                </td>
+              </ng-container>
+              <!-- Checkbox Row -->
+              <ng-container *ngSwitchCase="'Date'">
+                <td mat-cell *matCellDef="let element">
+                  {{ ((element || {})[column.Name] | date: (column.Format || gridColumnOption.Format['Date'])) |
+                  translate
+                  }}
+                </td>
+              </ng-container>
+              <ng-container *ngSwitchCase="'DateTime'">
+                <td mat-cell *matCellDef="let element">
+                  {{ ((element || {})[column.Name] | date: (column.Format || gridColumnOption.Format[column.Type])) |
+                  translate }}
+                </td>
+              </ng-container>
+              <ng-container *ngSwitchCase="'Number'">
+                <td mat-cell *matCellDef="let element">
+                  {{ ((element || {})[column.Name] | number: (column.Format || gridColumnOption.Format['Number'])) |
+                  translate }}
+                </td>
+              </ng-container>
+              <ng-container *ngSwitchCase="'Money'">
+                <td mat-cell *matCellDef="let element">
+                  <span class="cell-prefix" *ngIf="column.Prefix !=''">
+                    {{ (column.Prefix || gridColumnOption.Prefix[column.Type]) | translate }}
+                  </span>
+                  {{ ((element || {})[column.Name] | number: (column.Format || gridColumnOption.Format[column.Type])) |
+                  translate }}
+                </td>
+              </ng-container>
+              <ng-container *ngSwitchDefault>
+                <td mat-cell *matCellDef="let element">
+                  <span class="cell-prefix" *ngIf="column.Prefix !=''">{{ (column.Prefix ||
+                    gridColumnOption.Prefix[column.Type]) | translate }}</span>
+                  {{ (element || {})[column.Name] | translate }}
+                  <span class="cell-suffix" *ngIf="column.Suffix !=''">{{ (column.Suffix ||
+                    gridColumnOption.Suffix[column.Type]) | translate }}</span>
+                </td>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+          <!-- Normal Column -->
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky true"></tr>
+        <tr mat-row matRipple class="element-row" *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell grid-no-record">{{ noRecordMessage | translate }}</td>
+        </tr>
+      </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="pageSizeOptions" (page)="pageChange($event)" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

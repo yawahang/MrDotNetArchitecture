@@ -1,0 +1,29 @@
+<mat-progress-bar *ngIf="loading" mode="query"></mat-progress-bar>
+
+<div *ngIf="!loading" class="profile-container">
+    <div class="profile mat-elevation-z2">
+        <div class="profile-image">
+            <img class="mat-elevation-z10" src="{{ userProfile.ProfileImage }}" />
+            <div class="middle">
+                <label class="profile-upload">
+                    <input type="file" accept="image/*" (change)="onImageChange($event)" #inputFile />
+                    <mat-icon>camera_enhance</mat-icon>
+                </label>
+            </div>
+        </div>
+
+        <div class="profile-info">
+            <span class="profile-user-name">{{ userProfile.Username }}</span>
+            <span class="profile-name">{{ userProfile.FirstName }} {{ userProfile.MiddleName }} {{
+                userProfile.LastName
+                }}</span>
+            <span class="dob">{{ userProfile.DateOfBirth | date: 'MMMM d, y' }}</span>
+            <span class="addr">{{ userProfile.Address }}</span>
+            <span class="profile-edit-btn-wrp">
+                <button mat-raised-button (click)="editClick()" class="action-button m-r-10 editFormId" color="basic">
+                    {{ 'EditProfile' | translate }}
+                </button>
+            </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+<mat-sidenav-container>
+  <mat-sidenav #notificationSideNav (opened)="notificationOpened()" (closed)="notificationClosed()"
+    class="mat-elevation-z4" mode="over" position="end">
+    <div class="notification-header mat-elevation-z4">
+      <mat-icon (click)="notificationSideNav.toggle()" matTooltip="{{ 'Close' | translate }}">close</mat-icon>
+      <div class="head-today">
+        {{today.toDateString()}}
+      </div>
+    </div>
+    <div class="notification-content">
+      <mat-card *ngFor="let n of notificationList" class="mat-elevation-z4">
+        <mat-card-header>
+          <mat-card-title>{{n.Notification}}</mat-card-title>
+          <mat-card-subtitle class="notif-date">{{n.NotificationDate}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="d-flex flex-dir-col">
+            <div class="flex-1">
+              {{n.Description}}
+            </div>
+            <div class="flex-1 author">
+              - {{n.Author}}
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-sidenav-container>
+      <mat-sidenav #menuSideNav mode="side" class="mat-elevation-z4">
+        <div class="sidenav-header">
+          <div class="nav-logo">
+            <img src="{{ orgImage }}" matTooltip="{{ appName }}" class="site-logo mat-elevation-z8" />
+          </div>
+          <div class="nav-user-profile">
+            <div class="user-profile-wrap">
+              <img src="{{ profileImage }}" class="mat-elevation-z8" matTooltip="{{ 'ViewProfile' | translate }}"
+                (click)="userProfile()" />
+            </div>
+            <div class="profile-name">
+              {{ name }}
+            </div>
+          </div>
+          <div class="side-nav-actions">
+            <mat-icon class="dataAccessKeyId" matTooltip="{{ 'DataAccess' | translate }} ({{ 'Ctrl + D' | translate }})"
+              (click)="dataAccess()">
+              security
+            </mat-icon>
+
+            <mat-icon class="switchRoleKeyId" matTooltip="{{ 'SwitchRole' | translate }} ({{ 'Ctrl + R' | translate }})"
+              (click)="switchRole()">
+              swap_horizontal_circle</mat-icon>
+
+            <mat-icon class="lang-btn" [matMenuTriggerFor]="langMenu" matTooltip="{{ 'SwitchLanguage' | translate }}">
+              language</mat-icon>
+            <mat-menu #langMenu="matMenu">
+              <button *ngFor="let clt of cultureList" class="lang-menu-icon {{clt.IsActive ? 'lang-active' : ''}}"
+                (click)="switchLanguage(clt.Culture.toLowerCase())" mat-menu-item>
+                <span>{{ clt.Description | translate }} ({{clt.Culture}})</span>
+              </button>
+            </mat-menu>
+
+            <mat-icon class="change-theme-btn" (click)="changeTheme()"
+              matTooltip="{{(isDarkTheme ? 'LightTheme' : 'DarkTheme') | translate}}">
+              {{isDarkTheme ? 'brightness_high': 'brightness_medium'}}
+            </mat-icon>
+          </div>
+        </div>
+        <div class="sidenav-content">
+          <ul>
+            <li *ngFor="let nav of navigationListExternal" class="nav-item"
+              [routerLinkActive]="[nav.IsActive ? 'link-active' : '']">
+              <button mat-button class="nav-link" [routerLink]="[nav.Url]" (click)="onNavigationChange(nav)">
+                <mat-icon>{{nav.Icon}}</mat-icon>
+                &nbsp;&nbsp;
+                {{ nav.Navigation | translate }}
+              </button>
+            </li>
+            <li *ngIf="navigationList.length == 0" class="nav-item">
+              {{ 'NoNavigationAccess' | translate }}
+            </li>
+          </ul>
+        </div>
+        <!-- Copyrights -->
+        <div class="copyright-wrap">
+          ©{{today.getFullYear()}} <a href="https://mrsolution.com.np/">&nbsp;M&R Solution</a>&nbsp;All rights reserved.
+        </div>
+      </mat-sidenav>
+
+      <!-- Content -->
+      <ng-content></ng-content>
+      <!-- Content -->
+    </mat-sidenav-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

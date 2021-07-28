@@ -1,0 +1,64 @@
+@import "core/styles/style-utility.scss";
+@import "core/styles/error.scss";
+@import "~@angular/material/theming";
+@include mat-core();
+
+// site-theme-component themable components
+@import "core/styles/site-theme.scss";
+@mixin site-theme-component($theme) {
+  @include site-theme-cmp($theme);
+}
+// site-core-component themable components
+@import "core/styles/site-core.scss";
+@mixin site-core-component($theme) {
+  @include site-core-cmp($theme);
+}
+// sidenav-component themable components
+@import "app/@main/sidenav/sidenav.component.scss";
+@mixin sidenav-component($theme) {
+  @include sidenav-cmp($theme);
+}
+// toolbar-component themable components
+@import "app/@main/toolbar/toolbar.component.scss";
+@mixin toolbar-component($theme) {
+  @include toolbar-cmp($theme);
+}
+// material-overrides themable components
+@import "core/styles/material-overrides.scss";
+@mixin material-overrides-component($theme) {
+  @include material-overrides-cmp($theme);
+}
+// mat-grid-theme themable components
+@import "../src/shared/controls/mat-grid/mat-grid.component.scss";
+@mixin mat-grid-component($theme) {
+  @include mat-grid-cmp($theme);
+}
+
+// Light theme
+$light-primary: mat-palette($mat-indigo);
+$light-accent: mat-palette($mat-pink, A200, A100, A400);
+$light-theme: mat-light-theme($light-primary, $light-accent);
+.light-theme {
+  @include angular-material-theme($light-theme);
+  @include sidenav-cmp($light-theme);
+  @include toolbar-cmp($light-theme);
+  @include site-theme-cmp($light-theme);
+  @include material-overrides-cmp($light-theme);
+  @include site-core-cmp($light-theme);
+  @include mat-grid-cmp($light-theme);
+}
+
+// Dark theme
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+.dark-theme {
+  @include angular-material-theme($dark-theme);
+  @include sidenav-cmp($dark-theme);
+  @include toolbar-cmp($dark-theme);
+  @include site-theme-cmp($dark-theme);
+  @include site-core-cmp($dark-theme);
+  @include material-overrides-cmp($dark-theme);
+  @include mat-grid-cmp($dark-theme);
+}

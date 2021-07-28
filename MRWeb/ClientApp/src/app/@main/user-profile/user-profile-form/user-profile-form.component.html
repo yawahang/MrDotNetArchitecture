@@ -1,0 +1,49 @@
+<div mat-dialog-title>
+  <span>{{ 'EditUserProfile' | translate}} </span>
+  <mat-icon (click)="cancelClick()" matTooltip="{{ 'Close' | translate}}" class="closeFormId">close</mat-icon>
+</div>
+
+<div mat-dialog-content>
+  <form name="fmUserEdit" [formGroup]="fmUser" class="formKeyId">
+    <fieldset>
+      <legend>{{ 'UserDet' | translate }}</legend>
+
+      <div class="d-flex">
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'FirstName' | translate }}" formControlName="FirstName" enterKeyFocus>
+        </mat-form-field>
+
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'MiddleName' | translate }}" formControlName="MiddleName" enterKeyFocus>
+        </mat-form-field>
+
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'LastName' | translate }}" formControlName="LastName" enterKeyFocus>
+        </mat-form-field>
+      </div>
+
+      <div class="d-flex">
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'DateOfBirth' | translate }}" formControlName="DateOfBirth"
+            [matDatepicker]="DateOfBirth" enterKeyFocus>
+          <mat-error>
+            {{ 'InvalidDateOfBirth' | translate }}
+          </mat-error>
+          <mat-datepicker-toggle matSuffix [for]="DateOfBirth"></mat-datepicker-toggle>
+          <mat-datepicker #DateOfBirth [calendarHeaderComponent]="pickerHeader"
+            startView="{{ !selectionModel.DateOfBirth ? 'year' : 'month'}}" [startAt]="dateOfBirthStart">
+          </mat-datepicker>
+
+        </mat-form-field>
+
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'Address' | translate }}" formControlName="Address" enterKeyFocus>
+        </mat-form-field>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button (click)="submitForm()" color="primary">{{ 'Save' | translate }}</button>
+</mat-dialog-actions>

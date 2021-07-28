@@ -1,0 +1,85 @@
+<div class="site-content">
+  <div class="site-content-header">
+    <div class="search-bar">
+      <mat-form-field class="table-search-form-field m-4" appearance="fill"
+        matTooltip="{{ 'SearchMessageText' | translate }}">
+        <mat-label>{{ 'Search' | translate }}</mat-label>
+        <input #searchText matInput (keyup.enter)="applyFilter($event)">
+        <mat-icon matTooltip="{{ 'Clear' | translate }}" (click)="clearSearch()" class="clear-search-icon" matSuffix>
+          close</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field class="table-search-form-field m-4" appearance="fill">
+        <mat-label>{{ 'Status' | translate }}</mat-label>
+        <mat-select placeholder="{{ 'Status'  | translate }}" multiple [(ngModel)]="statusModel"
+          #selectionModel="ngModel" (ngModelChange)="onStatusChange()">
+          <select-check-all [model]="selectionModel" [values]="statusModel">
+          </select-check-all>
+          <mat-option *ngFor="let dt of  statusList;" [value]="dt.ListItemId">
+            {{ dt.ListItem | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Navigation Action -->
+    <div class="flex-1">
+      <nav-action (onActionClick)="onActionClick($event)">
+      </nav-action>
+    </div>
+    <!-- Navigation Action -->
+  </div>
+
+  <!-- Grid -->
+  <mat-grid [config]="gridConfig" (onRowActionClick)="onRowActionClick($event)" (onRowDblClick)="onRowDblClick($event)"
+    (onRowClick)="onRowClick($event)" (onPageChange)="onPageChange($event)" (onSortChange)="onSortChange($event)"
+    [rowTemplateOption]="{
+    CurrentRole: currentRoleTpl, 
+    DefaultNavigation: defaultNavTpl, 
+    DefaultApplication: defaultAppTpl, 
+    Culture: cultureTpl
+  }">
+  </mat-grid>
+  <!-- Grid -->
+</div>
+
+<ng-template #cultureTpl let-element>
+  <div class="row-cell-template-wrapper">
+    <span *ngIf="element?.Culture != '' && element?.Culture != 'Unassigned'">{{element?.Culture | translate}}</span>
+    <mat-icon *ngIf="element?.Culture == 'Unassigned'" [ngStyle]="{ 'color': '#f12727'}"
+      matTooltip="{{'AssignCultureMsg' | translate}}">
+      warning</mat-icon>
+  </div>
+</ng-template>
+
+<ng-template #defaultAppTpl let-element>
+  <div class="row-cell-template-wrapper">
+    <span
+      *ngIf="element?.DefaultApplication != '' && element?.DefaultApplication != 'Unassigned'">{{element?.DefaultApplication
+      | translate}}</span>
+    <mat-icon *ngIf="element?.DefaultApplication == 'Unassigned'" [ngStyle]="{ 'color': '#f12727'}"
+      matTooltip="{{'AssignApplicationMsg' | translate}}">
+      warning</mat-icon>
+  </div>
+</ng-template>
+
+<ng-template #defaultNavTpl let-element>
+  <div class="row-cell-template-wrapper">
+    <span
+      *ngIf="element?.DefaultNavigation != '' && element?.DefaultNavigation != 'Unassigned'">{{element?.DefaultNavigation
+      | translate}}</span>
+    <mat-icon *ngIf="element?.DefaultNavigation == 'Unassigned'" [ngStyle]="{ 'color': '#f12727'}"
+      matTooltip="{{'AssignNavigationMsg' | translate}}">
+      warning</mat-icon>
+  </div>
+</ng-template>
+
+<ng-template #currentRoleTpl let-element>
+  <div class="row-cell-template-wrapper">
+    <span *ngIf="element?.CurrentRole != '' && element?.CurrentRole != 'Unassigned'">{{element?.CurrentRole |
+      translate}}</span>
+    <mat-icon *ngIf="element?.CurrentRole == 'Unassigned'" [ngStyle]="{ 'color': '#f12727'}"
+      matTooltip="{{'AssignRoleMsg' | translate}}">
+      warning</mat-icon>
+  </div>
+</ng-template>

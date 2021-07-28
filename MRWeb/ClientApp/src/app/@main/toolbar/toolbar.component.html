@@ -1,0 +1,63 @@
+<mat-toolbar class="mat-elevation-z2">
+  <mat-icon class="menu-icon" matTooltip="{{ 'ToggleNavigation' | translate }}" (click)="toggleSidenav()">
+    menu
+  </mat-icon>
+
+  <ng-container *ngIf="navigationList.length > 0">
+    <nav class="internal-nav-item-wrap" mat-tab-nav-bar>
+      <a class="internal-nav-item" mat-tab-link *ngFor="let nav of navigationList"
+        (click)="internalNavigationClick(nav)" [active]="activeNavigationId == nav.NavigationId">
+        <mat-icon>{{nav.Icon}}</mat-icon>
+        &nbsp;&nbsp;
+        {{nav.Navigation}}
+      </a>
+    </nav>
+  </ng-container>
+
+  <ng-container *ngIf="navigationList.length == 0">
+    <div class="no-internal-nav-access">{{ 'NoNavigationAccess' | translate }} </div>
+  </ng-container>
+
+  <div class="toolbar-action-wrap">
+    <div class="fullscreen-icon">
+      <div class="app-btn-wrap mat-elevation-z2">
+        <mat-icon (click)="fullscreenClick()"
+          matTooltip="{{(isFullscreen ? 'ExitFullscreen': 'Fullscreen') | translate }}">{{isFullscreen ?
+          'fullscreen_exit':
+          'fullscreen'}}</mat-icon>
+      </div>
+    </div>
+
+    <div class="notification-icon">
+      <div class="app-btn-wrap mat-elevation-z2">
+        <mat-icon (click)="notificationClick()" matTooltip="{{'Notifications' | translate }}">
+          notifications</mat-icon>
+      </div>
+    </div>
+
+    <div class="application-icon">
+      <div class="app-btn-wrap mat-elevation-z2">
+        <mat-icon [matMenuTriggerFor]="appMenu" [matTooltipClass]="'multi-line-tooltip'"
+          matTooltip="{{ 'Application' | translate }} : {{ defaultApplication | translate }}&#13;{{ 'SwitchApplication' | translate }}">
+          {{ defaultApplicationIcon }}
+        </mat-icon>
+        <mat-menu #appMenu="matMenu">
+          <button *ngFor="let app of applicationList" matTooltip="{{ app.Description | translate }}"
+            class="app-menu-icon {{app.IsActive ? 'application-active' : ''}}" (click)="switchApplication(app)"
+            mat-menu-item>
+            <mat-icon>{{app.Icon}}</mat-icon>
+            &nbsp;&nbsp;
+            {{ app.Application | translate }}
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+
+    <div class="logout-icon">
+      <div class="app-btn-wrap mat-elevation-z2">
+        <mat-icon class="logout-btn" (click)="logout()" matTooltip="{{ 'Logout' | translate }}">power_settings_new
+        </mat-icon>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>

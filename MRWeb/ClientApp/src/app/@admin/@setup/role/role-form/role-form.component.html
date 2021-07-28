@@ -1,0 +1,31 @@
+<div mat-dialog-title>
+  <span>{{ (action === 'Add' ? 'AddRole': 'EditRole') | translate }}</span>
+  <mat-icon (click)="cancelClick()" matTooltip="{{ 'Close' | translate }}" class="closeFormId">close</mat-icon>
+</div>
+
+<div mat-dialog-content>
+  <form name="fmRole" [formGroup]="fmRole" class="formKeyId">
+    <fieldset>
+      <legend>{{ 'RoleDet' | translate }}</legend>
+
+      <div class="d-flex">
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'Role' | translate }}" formControlName="Role" autocomplete="off"
+            enterKeyFocus>
+        </mat-form-field>
+
+        <mat-form-field class="flex-1 m-lr-2">
+          <mat-select placeholder="{{ 'Status' | translate }}" formControlName="StatusListItemId" enterKeyFocus>
+            <mat-option *ngFor="let dt of statusList;" [value]="dt.ListItemId">
+              {{ dt.ListItem | translate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button type="submit" (click)="submitForm()" color="primary">{{ 'Save' | translate }}</button>
+</mat-dialog-actions>

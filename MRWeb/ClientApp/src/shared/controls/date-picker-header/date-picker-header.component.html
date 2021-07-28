@@ -1,0 +1,19 @@
+<div class="picker-header">
+    <button mat-icon-button class="picker-double-arrow" (click)="previousClicked('year')"
+        matTooltip="{{ 'Previous Year' | translate }}">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+        <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <button mat-icon-button (click)="previousClicked('month')" matTooltip="{{ 'Previous Month' | translate }}">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <span class="picker-header-label">{{periodLabel}}</span>
+    <button mat-icon-button (click)="nextClicked('month')" matTooltip="{{ 'Next Month' | translate }}">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+    <button mat-icon-button class="picker-double-arrow" (click)="nextClicked('year')"
+    matTooltip="{{ 'Next Year' | translate }}">
+        <mat-icon>keyboard_arrow_right</mat-icon>
+        <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+</div>

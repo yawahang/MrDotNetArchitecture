@@ -1,0 +1,26 @@
+<div class="site-content">
+  <div class="site-content-header">
+    <div class="search-bar">
+      <mat-form-field class="table-search-form-field m-4" appearance="fill"
+        matTooltip="{{ 'SearchMessageText' | translate }}">
+        <mat-label>{{ 'Search' | translate }}</mat-label>
+        <input #searchText matInput (keyup.enter)="applyFilter($event)">
+        <mat-icon matTooltip="{{ 'Clear' | translate }}" (click)="clearSearch()" class="clear-search-icon" matSuffix>
+          close</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <!-- Navigation Action -->
+    <div class="flex-1">
+      <nav-action (onActionClick)="onActionClick($event)">
+      </nav-action>
+    </div>
+    <!-- Navigation Action -->
+  </div>
+
+  <!-- Grid -->
+  <mat-grid [config]="gridConfig" (onRowActionClick)="onRowActionClick($event)" (onRowDblClick)="onRowDblClick($event)"
+    (onRowClick)="onRowClick($event)" (onPageChange)="onPageChange($event)" (onSortChange)="onSortChange($event)">
+  </mat-grid>
+  <!-- Grid -->
+</div>

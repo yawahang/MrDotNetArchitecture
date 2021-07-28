@@ -1,0 +1,32 @@
+<div class="site-content">
+  <div class="site-content-header">
+    <div class="search-bar">
+
+    </div>
+
+    <!-- Navigation Action -->
+    <div class="flex-1">
+      <nav-action [isFloating]="true" (onActionClick)="onActionClick($event)">
+      </nav-action>
+    </div>
+    <!-- Navigation Action -->
+  </div>
+
+  <div class="d-flex flex-dir-col">
+    <div class="d-flex flex-1 flex-dir-row m-8">
+      <!-- Box Tiles -->
+      <div *ngFor="let tile of boxTiles" class="box-tile flex-1 m-6">
+        <mat-tile [data]="tile"></mat-tile>
+      </div>
+      <!-- Box Tiles -->
+    </div>
+
+    <div class="d-flex flex-1 flex-dir-row m-8">
+      <!-- Chart Tiles -->
+      <div *ngFor="let tile of barChartV" class="chart-tile flex-1 m-6">
+        <mat-tile [data]="tile"></mat-tile>
+      </div>
+      <!-- Chart Tiles -->
+    </div>
+  </div>
+</div>

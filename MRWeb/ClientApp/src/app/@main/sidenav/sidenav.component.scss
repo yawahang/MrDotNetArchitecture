@@ -1,0 +1,213 @@
+@mixin sidenav-cmp($theme) {
+  $primary: map-get($theme, primary);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  mat-sidenav-container {
+    height: 100vh;
+  }
+
+  mat-sidenav {
+    width: 20rem;
+  }
+
+  .sidenav-header {
+    color: mat-color($primary, default-contrast);
+    position: relative;
+    height: 25rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: linear-gradient(to bottom, #585575, #1c1931);
+
+    .nav-logo {
+      flex: 0 1;
+      margin-bottom: 2rem;
+
+      .site-logo {
+        height: 13vh;
+        width: 100%;
+        object-fit: fill;
+      }
+    }
+
+    .nav-user-profile {
+      flex: 1;
+      .user-profile-wrap {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        img {
+          border-radius: 50%;
+          height: 9rem !important;
+          width: 9rem !important;
+          cursor: pointer !important;
+        }
+      }
+      .profile-name {
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: mat-color($primary, default-contrast);
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        margin: 1rem 0 0 0;
+      }
+    }
+
+    .side-nav-actions {
+      display: flex;
+      align-self: flex-end;
+      mat-icon {
+        flex: 1;
+        margin: 5px;
+
+        &:hover {
+          color: #ccc9da;
+        }
+      }
+
+      .lang-menu-icon {
+        font-size: large;
+      }
+    }
+  }
+
+  .sidenav-content {
+    height: calc(100vh - 27rem);
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        border-bottom: 0.5px solid #c2cfd4;
+        padding: 5px;
+        .mat-button {
+          height: 3rem;
+          line-height: 2.8rem;
+          text-align: left;
+          width: 100%;
+          font-size: 1rem;
+
+          .mat-icon {
+            float: left;
+            line-height: 2.7rem;
+            padding-right: 1rem;
+            color: mat-color($foreground, text);
+          }
+        }
+      }
+
+      .link-active {
+        background: linear-gradient(to right, #35315e, #736f9e);
+
+        .mat-button {
+          color: #fff !important;
+        }
+
+        .mat-icon {
+          color: #fff !important;
+        }
+      }
+    }
+  }
+
+  .copyright-wrap {
+    display: flex;
+    font-size: small;
+    color: mat-color($mat-grey, 600);
+    flex: 1;
+    justify-content: center;
+    a {
+      color: mat-color($mat-blue, 600);
+    }
+  }
+
+  .lang-active {
+    background: linear-gradient(to right, #5a558a, #8b87b3) !important;
+    color: #fff !important;
+  }
+
+  .switch-role-btn > mat-icon {
+    color: mat-color($primary, default-contrast);
+  }
+  .logout-btn > mat-icon {
+    color: mat-color($warn, default-contrast);
+  }
+  .mat-radio-button {
+    margin: 5px;
+  }
+  .lang-btn-en > img {
+    height: auto;
+    width: auto;
+    margin-right: 5px;
+  }
+  .lang-btn-ne > img {
+    height: auto;
+    width: auto;
+    margin-right: 27px;
+  }
+
+  .notification-header {
+    color: white;
+    position: relative;
+    height: 6.6vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-image: linear-gradient(to right, #5764a0, #114c4e);
+    padding: 5px;
+
+    mat-icon {
+      flex: 0 1;
+      margin: 5px;
+
+      &:hover {
+        color: #f72011;
+      }
+    }
+
+    .head-today {
+      flex: 1;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      text-align: end;
+      padding: 6px;
+    }
+  }
+
+  .notification-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+    height: calc(100vh - 4rem);
+    overflow-y: scroll;
+    background: whitesmoke;
+    mat-card {
+      width: 95%;
+      min-height: 8rem;
+      max-height: 20rem;
+      height: auto;
+      display: flex;
+      flex-wrap: wrap;
+      flex: 0 1;
+      margin: 6px;
+      overflow-y: scroll;
+      padding: 8px !important;
+      font-size: 1rem;
+
+      .notif-date {
+        font-size: 0.8em;
+      }
+
+      .author {
+        text-align: end;
+        font-size: 0.8em;
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<div mat-dialog-title>
+  <span>{{ ( action === 'Add'? 'AddCategoryList' : 'EditCategoryList') | translate}} </span>
+  <mat-icon (click)="cancelClick()" matTooltip="{{ 'Close' | translate}}" class="closeFormId">close</mat-icon>
+</div>
+
+<div mat-dialog-content>
+  <form name="fmListItemCategory" [formGroup]="fmListItemCategory" class="formKeyId">
+    <fieldset>
+      <legend>{{ 'ListCategoryDet' | translate}}</legend>
+
+      <div class="d-flex">
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'Category' | translate }}" formControlName="Category" autocomplete="off"
+            enterKeyFocus>
+        </mat-form-field>
+
+        <mat-form-field class="flex-1 m-lr-2">
+          <input matInput placeholder="{{ 'Description' | translate }}" formControlName="Description" autocomplete="off"
+            enterKeyFocus>
+        </mat-form-field>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button type="submit" (click)="submitForm()" color="primary">{{'Save' | translate}}</button>
+</mat-dialog-actions>

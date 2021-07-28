@@ -1,0 +1,107 @@
+.profile-container {
+  height: calc(100vh - 120px) !important;
+  max-width: 93.5rem;
+  margin: 3rem auto 0 auto;
+  padding: 0 2rem;
+  overflow: hidden;
+
+  .profile {
+    padding: 5rem 0;
+    background: #f8f8fb1c;
+    display: flex;
+
+    .profile-image {
+      position: relative;
+      float: left;
+      width: calc(33.333% - 5rem);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .middle {
+        transition: 0.5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      img {
+        border-radius: 50%;
+        width: 13rem;
+        height: 13rem;
+        opacity: 1;
+        display: block;
+        transition: 0.5s ease;
+        backface-visibility: hidden;
+      }
+
+      .profile-upload {
+        margin-left: -1rem;
+        input {
+          display: none !important;
+        }
+
+        mat-icon {
+          font-size: 2.5rem !important;
+          color: #51479d !important;
+        }
+      }
+    }
+
+    .profile-image:hover img {
+      opacity: 0.5;
+    }
+
+    .profile-image:hover .middle {
+      opacity: 1;
+    }
+
+    .middle {
+      transition: 0.5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 52%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .profile-info {
+      float: left;
+      display: flex;
+      flex-direction: column;
+
+      .profile-user-name {
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: #3a0606;
+        flex: 1;
+      }
+
+      .profile-name {
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: #735555;
+        flex: 1;
+      }
+
+      .dob,
+      .addr {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #735555;
+        flex: 1;
+      }
+
+      .profile-edit-btn-wrp {
+        margin-top: 1rem;
+        flex: 1;
+      }
+    }
+  }
+}

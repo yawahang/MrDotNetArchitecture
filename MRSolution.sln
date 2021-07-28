@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRApi", "MRApi\MRApi.csproj", "{9731606D-454F-4179-B101-0140D4EAAD50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRService", "MRService\MRService.csproj", "{629A543B-D9B8-4F84-AC52-6AFC3D746154}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRModel", "MRModel\MRModel.csproj", "{A864AD96-1540-49BB-9A33-CF022C94C18B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MRWeb", "MrWeb\MRWeb.csproj", "{ACA76C75-40BD-48A4-8711-FFE2990CFA5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9731606D-454F-4179-B101-0140D4EAAD50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9731606D-454F-4179-B101-0140D4EAAD50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9731606D-454F-4179-B101-0140D4EAAD50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9731606D-454F-4179-B101-0140D4EAAD50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{629A543B-D9B8-4F84-AC52-6AFC3D746154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{629A543B-D9B8-4F84-AC52-6AFC3D746154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{629A543B-D9B8-4F84-AC52-6AFC3D746154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{629A543B-D9B8-4F84-AC52-6AFC3D746154}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A864AD96-1540-49BB-9A33-CF022C94C18B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A864AD96-1540-49BB-9A33-CF022C94C18B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A864AD96-1540-49BB-9A33-CF022C94C18B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A864AD96-1540-49BB-9A33-CF022C94C18B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACA76C75-40BD-48A4-8711-FFE2990CFA5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA76C75-40BD-48A4-8711-FFE2990CFA5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA76C75-40BD-48A4-8711-FFE2990CFA5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA76C75-40BD-48A4-8711-FFE2990CFA5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {37F62219-E425-4238-9F00-8A6D1B8DCB50}
+	EndGlobalSection
+EndGlobal

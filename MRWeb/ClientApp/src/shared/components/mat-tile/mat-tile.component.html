@@ -1,0 +1,166 @@
+<ng-container [ngSwitch]="tile.Type">
+  <ng-container *ngSwitchCase="'Box'">
+    <ng-container *ngTemplateOutlet="boxTpl; context: { $implicit: tile }">
+    </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'Bar'">
+    <ng-container *ngTemplateOutlet="barTpl; context: { $implicit: tile }">
+    </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'Line'">
+    <ng-container *ngTemplateOutlet="lineTpl; context: { $implicit: tile }">
+    </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'Column'">
+    <ng-container *ngTemplateOutlet="columTpl; context: { $implicit: tile }">
+    </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'Pie'">
+    <ng-container *ngTemplateOutlet="pieTpl; context: { $implicit: tile }">
+    </ng-container>
+  </ng-container>
+  <ng-container *ngSwitchCase="'Donut'">
+    <ng-container *ngTemplateOutlet="donutTpl; context: { $implicit: tile }">
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+<!-- Box -->
+<ng-template #boxTpl>
+  <mat-card [ngStyle]="{'background': tile?.Background}">
+    <mat-card-header>
+      <mat-card-subtitle>{{ tile?.Title }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="d-flex flex-1 justify-center">
+        <h1 class="font-size-3rem color-white">{{ tile?.Value }}</h1>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<!-- Donut -->
+<ng-template #donutTpl>
+  <mat-card [ngStyle]="{'background': tile?.Background}">
+    <mat-card-header>
+      <mat-card-subtitle>{{ tile?.Title }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <ngx-charts-pie-chart [results]="tile?.Data" [view]="[700, 400]" [scheme]="colorScheme" [gradient]="true"
+        [legend]="true" [legendPosition]="'bottom'" [legendTitle]="''" [labels]="true" [doughnut]="true"
+        (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+      </ngx-charts-pie-chart>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<!-- Pie -->
+<ng-template #pieTpl>
+  <mat-card [ngStyle]="{'background': tile?.Background}">
+    <mat-card-header>
+      <mat-card-subtitle>{{ tile?.Title }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <ngx-charts-pie-chart [results]="tile?.Data" [view]="[700, 400]" [scheme]="colorScheme" [gradient]="true"
+        [legend]="true" [legendPosition]="'bottom'" [legendTitle]="''" [labels]="true" [doughnut]="false"
+        (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+      </ngx-charts-pie-chart>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<!-- Column -->
+<ng-template #columTpl>
+  <mat-card [ngStyle]="{'background': tile?.Background}">
+    <mat-card-header>
+      <mat-card-subtitle>{{ tile?.Title }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <ngx-charts-bar-horizontal *ngIf="tile.SubType == 'Single' && tile.Orientation == 'Horizontal'"
+        [view]="[700, 400]" [scheme]="colorScheme" [results]="tile?.Data" [gradient]="true" [xAxis]="true"
+        [yAxis]="true" [legend]="true" [legendPosition]="'bottom'" [legendTitle]="''" [showXAxisLabel]="true"
+        [showYAxisLabel]="true" [xAxisLabel]="tile?.XAxisLabel" [yAxisLabel]="tile?.YAxisLabel"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-horizontal>
+
+      <ngx-charts-bar-horizontal-normalized *ngIf="tile.SubType == 'Stacked' && tile.Orientation == 'Horizontal'"
+        [view]="[700, 400]" [scheme]="colorScheme" [results]="tile?.Data" [gradient]="true" [xAxis]="true"
+        [yAxis]="true" [legend]="true" [legendPosition]="'bottom'" [legendTitle]="''" [showXAxisLabel]="true"
+        [showYAxisLabel]="true" [xAxisLabel]="tile?.XAxisLabel" [yAxisLabel]="tile?.YAxisLabel"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-horizontal-normalized>
+
+      <ngx-charts-bar-vertical *ngIf="tile.SubType == 'Single' && tile.Orientation == 'Vertical'" [view]="[700, 400]"
+        [scheme]="colorScheme" [results]="tile?.Data" [gradient]="true" [xAxis]="true" [yAxis]="true" [legend]="true"
+        [legendPosition]="'bottom'" [legendTitle]="''" [showXAxisLabel]="true" [showYAxisLabel]="true"
+        [xAxisLabel]="tile?.XAxisLabel" [yAxisLabel]="tile?.YAxisLabel" (select)="onSelect($event)">
+      </ngx-charts-bar-vertical>
+
+      <ngx-charts-bar-vertical-normalized *ngIf="tile.SubType == 'Stacked' && tile.Orientation == 'Vertical'"
+        [view]="[700, 400]" [scheme]="colorScheme" [results]="tile?.Data" [gradient]="true" [xAxis]="true"
+        [yAxis]="true" [legend]="true" [legendPosition]="'bottom'" [legendTitle]="''" [showXAxisLabel]="true"
+        [showYAxisLabel]="true" [xAxisLabel]="tile?.XAxisLabel" [yAxisLabel]="tile?.YAxisLabel"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-vertical-normalized>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<!-- Bar -->
+<ng-template #barTpl>
+  <mat-card [ngStyle]="{'background': tile?.Background}">
+    <mat-card-header>
+      <mat-card-subtitle>{{ tile?.Title }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <ngx-charts-bar-vertical *ngIf="tile.SubType == 'Single' && tile.Orientation == 'Horizontal'"
+        [results]="tile?.Data" [view]="[700, 400]" [scheme]="colorScheme" [gradient]="true" [xAxis]="true"
+        [yAxis]="true" [legend]="true" [legendPosition]="'bottom'" [legendTitle]="''" [showXAxisLabel]="true"
+        [showYAxisLabel]="true" [xAxisLabel]="tile?.XAxisLabel" [yAxisLabel]="tile?.YAxisLabel"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-vertical>
+
+      <ngx-charts-bar-vertical-normalized *ngIf="tile.SubType == 'Stacked' && tile.Orientation == 'Horizontal'"
+        [results]="tile?.Data" [view]="[700, 400]" [scheme]="colorScheme" [gradient]="true" [xAxis]="true"
+        [yAxis]="true" [legend]="true" [legendPosition]="'bottom'" [legendTitle]="''" [showXAxisLabel]="true"
+        [showYAxisLabel]="true" [xAxisLabel]="tile?.XAxisLabel" [yAxisLabel]="tile?.YAxisLabel"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-vertical-normalized>
+
+      <ngx-charts-bar-vertical *ngIf="tile.SubType == 'Single' && tile.Orientation == 'Vertical'" [results]="tile?.Data"
+        [view]="[700, 400]" [scheme]="colorScheme" [gradient]="true" [xAxis]="true" [yAxis]="true" [legend]="true"
+        [legendPosition]="'bottom'" [legendTitle]="''" [showXAxisLabel]="true" [showYAxisLabel]="true"
+        [xAxisLabel]="tile?.XAxisLabel" [yAxisLabel]="tile?.YAxisLabel" (select)="onSelect($event)">
+      </ngx-charts-bar-vertical>
+
+      <ngx-charts-bar-vertical-normalized *ngIf="tile.SubType == 'Stacked' && tile.Orientation == 'Vertical'"
+        [results]="tile?.Data" [view]="[700, 400]" [scheme]="colorScheme" [gradient]="true" [xAxis]="true"
+        [yAxis]="true" [legend]="true" [legendPosition]="'bottom'" [legendTitle]="''" [showXAxisLabel]="true"
+        [showYAxisLabel]="true" [xAxisLabel]="tile?.XAxisLabel" [yAxisLabel]="tile?.YAxisLabel"
+        (select)="onSelect($event)">
+      </ngx-charts-bar-vertical-normalized>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<!-- Line -->
+<ng-template #lineTpl>
+  <mat-card [ngStyle]="{'background': tile?.Background}">
+    <mat-card-header>
+      <mat-card-subtitle>{{ tile?.Title }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <ngx-charts-line-chart *ngIf="tile.SubType == 'Single'" [results]="tile?.Data" [view]="[700, 300]"
+        [scheme]="colorScheme" [legend]="true" [legendPosition]="'bottom'" [legendTitle]="''" [showXAxisLabel]="true"
+        [showYAxisLabel]="true" [xAxis]="true" [yAxis]="true" [xAxisLabel]="tile?.XAxisLabel"
+        [yAxisLabel]="tile?.YAxisLabel" [timeline]="true">
+      </ngx-charts-line-chart>
+
+      <ngx-charts-area-chart-stacked *ngIf="tile.SubType == 'Stacked'" [view]="[700, 300]" [scheme]="colorScheme"
+        [legend]="true" [results]="tile?.Data" [legendPosition]="'bottom'" [legendTitle]="''" [showXAxisLabel]="true"
+        [showYAxisLabel]="true" [xAxis]="true" [yAxis]="true" [xAxisLabel]="tile?.XAxisLabel"
+        [yAxisLabel]="tile?.YAxisLabel" [timeline]="true">
+      </ngx-charts-area-chart-stacked>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

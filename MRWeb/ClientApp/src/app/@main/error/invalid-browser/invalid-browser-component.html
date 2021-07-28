@@ -1,0 +1,11 @@
+<div class="error-wrapper">
+  <h1>{{'Error!' | translate }}</h1>
+  <span class="error-text">404</span>
+  <h2>
+    {{ 'Your browser is not supported' | translate }}
+  </h2>
+  <p>
+    {{ 'Sorry, we only support Chrome, Firefox, Opera, Safari and Ms. Edge due to certain inconsistence behaviours and security risk in other browsers available!' | translate }}
+  </p>
+  <button mat-button (click)="homeClick()">{{ 'Return' | translate }}</button>
+</div>

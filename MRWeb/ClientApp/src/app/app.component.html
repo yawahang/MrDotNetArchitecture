@@ -1,0 +1,14 @@
+<splash-screen [animationType]="'slide-left'" [duration]="2" [animationDuration]="0.5">
+</splash-screen>
+<block-ui></block-ui>
+<ng-container *ngIf="!isAuthenticated && isLogin">
+    <router-outlet></router-outlet>
+</ng-container>
+<div class="app" *ngIf="isAuthenticated && !isLogin">
+    <app-sidenav>
+        <app-toolbar></app-toolbar>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </app-sidenav>
+</div>

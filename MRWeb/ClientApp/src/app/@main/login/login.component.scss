@@ -1,0 +1,163 @@
+.login-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+.login-full-width {
+    width: 100%;
+}
+.box-login {   
+	background: #e8f0fe;
+    height: 355px;
+	max-width: 370px;
+	margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+	align-self: center;
+	left: 12%;
+}
+.login-form {
+	min-width: 100%;
+	max-width: 380px;
+	width: 100%;
+}
+.login-full-width,
+.btn-block {
+	width: 100%;
+}
+.mat-card-header {
+	text-align: center;
+	width: 100%;
+	display: block;
+	font-weight: 700;
+	margin-top: 10px !important;
+}
+.mat-card-title {
+	font-size: 14pt;
+	margin: 0;
+	color: #514f4c;
+}
+.mat-card {
+	padding: 40px;
+}
+.mat-stroked-button {
+	border: 1px solid currentColor;
+	line-height: 54px;
+	background: #FFF7FA;
+}
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+	padding: 0.8375em 0;
+}
+.mat-card-title{
+	display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.mat-card-title > mat-icon{
+   margin-right: 10px;
+}
+.login-btn-wrapper{
+	display: flex;
+	margin: 10px 0px;
+	button{
+		background: #f5e7e7 !important;
+	}
+}
+.mat-raised-button{
+   flex: 1 !important;
+}
+body {
+	height: 100%;
+	overflow: hidden;
+	width: 100% !important;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+  }
+  .slide-box {
+	width: 50%;
+	max-height: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin-left: 50%;
+	position: absolute;
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	margin-left: 0;
+  }
+  .top-layer {
+	width: 200%;
+	height: 100%;
+	position: relative;
+	left: 0;
+	left: -100%;
+	margin-left: 100%;
+  }
+  .right {
+	width: 25%;
+	height: 100%;
+	background: #e8e6e6;
+	right: 0;
+	position: absolute;
+  }
+  .left {  
+	left: 0;
+	width: 75%;
+	height: 100%; 
+	background-size: cover;
+	background-position: 50% 50%;
+	right: 0;
+	position: absolute;
+	text-align:center;
+	margin:0; 
+	padding:0;
+	-webkit-animation: slide 1s forwards;
+    -webkit-animation-delay: 2s;
+    animation: slide 2s forwards;
+    animation-delay: 3s;
+}
+.logo-wrapper > img{
+	 width: 100%;
+	 height: 100%;
+}
+
+@-webkit-keyframes slide {
+    100% { left: 0; }
+}
+
+@keyframes slide {
+    100% { left: 0; }
+}
+   
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	padding: 16px;
+	margin-top: -22px;
+	color: #fff;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 1s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+  }
+
+  .prev{
+	left: 0;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+	background-color: rgba(0,0,0,0.8);
+  }
+  .prev, .next {
+	background-color: #756a6a30;
+  }
