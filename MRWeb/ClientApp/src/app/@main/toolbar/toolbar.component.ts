@@ -108,7 +108,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
       this.navigationList = []
     }
 
-    this.navigationList = [...this.navigationList]
+    this.navigationList = [...this.navigationList];
   }
 
   switchApplication(app: MvApplication) {
