@@ -1,9 +1,9 @@
-USE MRSolution;
+USE MrDabatase;
 
 /*
 
 	EXEC utl.ApplicationSetup
-	EXEC utl.MR_ApplicationSetup
+	EXEC utl.DemoApplicationSetup
 
 */
 
