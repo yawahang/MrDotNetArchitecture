@@ -1,5 +1,5 @@
 # MRSolution
-Architecture for MRSolution Project
+.Net Architecture Sample
 
 # Technologies
      .Net 5
